@@ -1,14 +1,22 @@
 import React from 'react';
-import { StyledCalendar } from './Calendar.styles';
-import CalendarItem from 'components/molecules/CalendarItem/CalendarItem';
+import { StyledCalendar, StyledNameDay } from './Calendar.styles';
+import CalendarItem from 'components/atoms/CalendarItem/CalendarItem';
+import { Wrapper } from './Calendar.styles';
 import { date } from 'data/date';
 
 const Calendar = () => (
-  <StyledCalendar>
-    {[...Array(date.displayNumberOfDays())].map((el, index) => (
-      <CalendarItem key={index + 1} index={index + 1} />
-    ))}
-  </StyledCalendar>
+  <Wrapper>
+    <StyledNameDay>
+      {date.days.map((day) => (
+        <div key={day}>{day}</div>
+      ))}
+    </StyledNameDay>
+    <StyledCalendar>
+      {[...Array(date.displayNumberOfDays())].map((el, index) => (
+        <CalendarItem key={index + 1} index={index + 1} />
+      ))}
+    </StyledCalendar>
+  </Wrapper>
 );
 
 export default Calendar;

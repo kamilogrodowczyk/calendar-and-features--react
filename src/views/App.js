@@ -1,9 +1,12 @@
 import React from 'react';
-import Calendar from 'components/organisms/Calendar/Calendar';
+import Calendar from 'views/Calendar';
+import { Wrapper } from './App.styles';
+import { date } from 'data/date';
 
-const App = () => {
-  
-  return <Calendar />;
-};
+const App = () => (
+  <Wrapper>
+    <Calendar date={date} />
+  </Wrapper>
+);
 
 export default App;
