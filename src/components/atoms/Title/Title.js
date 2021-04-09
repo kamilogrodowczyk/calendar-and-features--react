@@ -1,9 +1,13 @@
 import React from 'react';
+import { Paragraph, Heading } from './Title.styles';
 
-const Title = ({ date }) => (
+const Title = () => (
   <>
-    <p>KLIENCI/Dąbex</p>
-    <h1>Kalendarz</h1>
+    <Paragraph>
+      Klienci/
+      <span>Dąbex</span>
+    </Paragraph>
+    <Heading>Kalendarz</Heading>
   </>
 );
 

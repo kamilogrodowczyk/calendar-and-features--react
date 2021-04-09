@@ -5,12 +5,14 @@ import { date } from 'data/date';
 const defaultValue = date.monthName[date.month];
 
 const SelectMonth = () => (
-  <Wrapper defaultValue={defaultValue}>
-    {date.monthName.map((month) => (
-      <option key={month} value={month}>
-        {month}
-      </option>
-    ))}
+  <Wrapper>
+    <select defaultValue={defaultValue}>
+      {date.monthName.map((month) => (
+        <option key={month} value={month}>
+          {month}
+        </option>
+      ))}
+    </select>
   </Wrapper>
 );
 

@@ -8,7 +8,7 @@ const Calendar = () => (
   <Wrapper>
     <StyledNameDay>
       {date.days.map((day) => (
-        <div key={day}>{day}</div>
+        <p key={day}>{day}</p>
       ))}
     </StyledNameDay>
     <StyledCalendar>
