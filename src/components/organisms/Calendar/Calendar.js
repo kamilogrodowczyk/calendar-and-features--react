@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledCalendar, StyledNameDay } from './Calendar.styles';
-import CalendarItem from 'components/atoms/CalendarItem/CalendarItem';
+import CalendarItem from 'components/molecules/CalendarItem/CalendarItem';
 import { Wrapper } from './Calendar.styles';
 import { date } from 'data/date';
 
@@ -12,9 +12,7 @@ const Calendar = () => (
       ))}
     </StyledNameDay>
     <StyledCalendar>
-      {[...Array(date.displayNumberOfDays())].map((el, index) => (
-        <CalendarItem key={index + 1} index={index + 1} />
-      ))}
+      <CalendarItem />
     </StyledCalendar>
   </Wrapper>
 );

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { date } from 'data/date';
 
 export const Wrapper = styled.div`
   display: grid;
@@ -19,17 +18,16 @@ export const StyledNameDay = styled.div`
 `;
 
 export const StyledCalendar = styled.div`
-  border: solid 2px white;
-  aspect-ratio: 7 / 5;
+  border: solid 3px ${({ theme }) => theme.colors.white};
   width: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 1fr);
   justify-content: center;
   background-color: transparent;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
 
-  & > *:first-child {
-    grid-column-start: ${date.displayDay()};
+  & > *:nth-child(7n - 1),
+  & > *:nth-child(7n) {
+    color: ${({ theme }) => theme.colors.yellow};
   }
 `;

@@ -2,11 +2,9 @@ import React from 'react';
 import { Wrapper } from './SelectYear.styles';
 import { date } from 'data/date';
 
-const defaultValue = date.year;
-
-const SelectMonth = () => (
+const SelectYear = (props) => (
   <Wrapper>
-    <select defaultValue={defaultValue}>
+    <select {...props} defaultValue={date.year}>
       {date.yearList.map((year) => (
         <option key={year} value={year}>
           {year}
@@ -16,4 +14,4 @@ const SelectMonth = () => (
   </Wrapper>
 );
 
-export default SelectMonth;
+export default SelectYear;
