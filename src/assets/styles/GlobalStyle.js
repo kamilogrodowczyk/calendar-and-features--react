@@ -4,6 +4,7 @@ export const GlobalStyle = createGlobalStyle`
     html {
         box-sizing: border-box;
         font-family: 'Merriweather Sans', sans-serif;
+        font-size: 14px;
     }
 
     *, *::after, *::before {
@@ -16,12 +17,12 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Merriweather Sans', sans-serif;
     }
 
-    p {
+    /* p {
         font-size: ${({ theme }) => theme.fontSizes.primary};
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         letter-spacing: .5px;
         line-height: 1.5;
-    }
+    } */
 
     h1 {
         font-size: ${({ theme }) => theme.fontSizes.large};

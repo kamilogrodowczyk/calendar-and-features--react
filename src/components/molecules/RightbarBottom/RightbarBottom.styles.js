@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from 'components/atoms/Button/Button.styles';
+import { Button } from 'components/atoms/Button.styles';
 
 export const StyledBottom = styled.div`
   width: 90%;
