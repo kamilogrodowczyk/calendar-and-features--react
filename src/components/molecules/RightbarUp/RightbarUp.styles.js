@@ -28,7 +28,7 @@ const Arrow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.colors.white}; 
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const ArrowLeft = styled(Arrow)`

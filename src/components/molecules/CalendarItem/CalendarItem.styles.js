@@ -17,30 +17,38 @@ export const StyledCalendarNow = styled.div`
     width: 90%;
     height: 90%;
     opacity: 0;
-    background-color: ${({ theme }) => theme.colors.lightenBlack}; 
+    background-color: ${({ theme }) => theme.colors.lightenBlack};
     transition: opacity 0.5 ease-in-out;
   }
 
   &:hover::after {
     cursor: pointer;
-    opacity: 1;
+    opacity: 0.6;
     transition: opacity 0.5 ease-in-out;
   }
 
   & > p {
     color: ${({ isToday }) => (isToday === date.date ? 'red' : '')};
     position: relative;
-    z-index: 10;
+    opacity: 1;
   }
 `;
 
 export const StyledCalendarPast = styled(StyledCalendarNow)`
+  &::after {
+    display: none;
+  }
+
   & > p {
     opacity: 0.3;
   }
 `;
 
 export const StyledCalendarNext = styled(StyledCalendarNow)`
+  &::after {
+    display: none;
+  }
+
   & > p {
     opacity: 0.3;
   }

@@ -1,18 +1,21 @@
 import React from 'react';
-import { StyledCalendar, StyledNameDay } from './Calendar.styles';
+import { Wrapper, StyledCalendarItem, StyledNameDay, StyledCalendar } from './Calendar.styles';
 import CalendarItem from 'components/molecules/CalendarItem/CalendarItem';
-import { Wrapper } from './Calendar.styles';
 import { date } from 'data/date';
+import CalendarHeading from 'components/molecules/CalendarHeading/CalendarHeading';
 
-const Calendar = () => (
+const Calendar = ({ changeDate, clickDate, handleClick }) => (
   <Wrapper>
-    <StyledNameDay>
-      {date.days.map((day) => (
-        <p key={day}>{day}</p>
-      ))}
-    </StyledNameDay>
+    <CalendarHeading changeDate={changeDate} clickDate={clickDate} />
     <StyledCalendar>
-      <CalendarItem />
+      <StyledNameDay>
+        {date.days.map((day) => (
+          <p key={day}>{day}</p>
+        ))}
+      </StyledNameDay>
+      <StyledCalendarItem>
+        <CalendarItem handleClick={handleClick} />
+      </StyledCalendarItem>
     </StyledCalendar>
   </Wrapper>
 );

@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: grid;
+`;
+
+export const StyledCalendar = styled.div`
+  display: grid;
   width: 700px;
 `;
 
@@ -17,7 +21,7 @@ export const StyledNameDay = styled.div`
   }
 `;
 
-export const StyledCalendar = styled.div`
+export const StyledCalendarItem = styled.div`
   border: solid 3px ${({ theme }) => theme.colors.white};
   width: 100%;
   display: grid;

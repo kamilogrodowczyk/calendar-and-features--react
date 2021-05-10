@@ -27,24 +27,26 @@ const addNextDays = () => {
   return lastDaysOfNextMonth;
 };
 
-const CalendarItem = () => (
-  <>
-    {addPastDays().map((el) => (
-      <StyledCalendarPast key={el} index={el}>
-        <p>{el}</p>
-      </StyledCalendarPast>
-    ))}
-    {date.displayNumberOfDays(date.month).map((el, index) => (
-      <StyledCalendarNow key={index + 1} el={index + 1} isToday={el}>
-        <p>{el}</p>
-      </StyledCalendarNow>
-    ))}
-    {addNextDays().map((el) => (
-      <StyledCalendarNext key={el} index={el}>
-        <p>{el}</p>
-      </StyledCalendarNext>
-    ))}
-  </>
-);
+const CalendarItem = ({ handleClick }) => {
+  return (
+    <>
+      {addPastDays().map((el) => (
+        <StyledCalendarPast key={el} index={el}>
+          <p>{el}</p>
+        </StyledCalendarPast>
+      ))}
+      {date.displayNumberOfDays(date.month).map((el, index) => (
+        <StyledCalendarNow key={index + 1} el={index + 1} isToday={el} onClick={handleClick}>
+          <p>{el}</p>
+        </StyledCalendarNow>
+      ))}
+      {addNextDays().map((el) => (
+        <StyledCalendarNext key={el} index={el}>
+          <p>{el}</p>
+        </StyledCalendarNext>
+      ))}
+    </>
+  );
+};
 
 export default CalendarItem;

@@ -3,8 +3,8 @@ import { StyledHeading, Publication, ArrowLeft, ArrowRight, ArrowCancel } from '
 
 const RightbarUp = () => (
   <StyledHeading>
-    <ArrowLeft>X</ArrowLeft>
-    <ArrowRight>X</ArrowRight>
+    <ArrowLeft>&lt;</ArrowLeft>
+    <ArrowRight>&gt;</ArrowRight>
     <Publication>publikacja 13 listopada 2021</Publication>
     <ArrowCancel>X</ArrowCancel>
   </StyledHeading>

@@ -22,7 +22,7 @@ export const StyledButton = styled(Button)`
   margin-right: 20px;
 
   &:first-of-type {
-      color: ${({ theme }) => theme.colors.yellow};
+    color: ${({ theme }) => theme.colors.yellow};
   }
 
   &:hover {
