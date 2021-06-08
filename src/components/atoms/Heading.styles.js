@@ -22,3 +22,8 @@ export const Heading3 = styled.h3`
   margin-bottom: 1.5rem;
   line-height: 1.3;
 `;
+
+export const Title = styled.h1`
+  font-size: ${({ theme }) => theme.fontSizes.large};
+  color: ${({ theme, isWhite }) => (isWhite ? theme.colors.white : theme.colors.black)};
+`;

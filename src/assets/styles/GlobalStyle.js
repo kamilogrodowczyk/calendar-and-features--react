@@ -32,4 +32,17 @@ export const GlobalStyle = createGlobalStyle`
         margin-bottom: 1rem;
         line-height: 1.1;
     }
+
+    h2 {
+        font-size: ${({ theme }) => theme.fontSizes.medium};
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+        line-height: 1.2;
+    }
+    h3 {
+        font-size: ${({ theme }) => theme.fontSizes.primary};
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.3;
+    }
 `;

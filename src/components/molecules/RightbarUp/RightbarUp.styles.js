@@ -18,6 +18,10 @@ export const Publication = styled.p`
   white-space: nowrap;
   left: 50%;
   transform: translateX(-50%);
+
+  & > span {
+    font-weight: 700;
+  }
 `;
 
 const Arrow = styled.div`
@@ -29,16 +33,37 @@ const Arrow = styled.div`
   justify-content: center;
   align-items: center;
   color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+  display: ${({ isOpacity }) => (isOpacity ? 'none' : 'flex')};
 `;
 
 export const ArrowLeft = styled(Arrow)`
   left: 1%;
+
+  & > svg {
+    fill: white;
+    width: 15px;
+    height: 15px;
+    transform: rotate(180deg);
+  }
 `;
 export const ArrowRight = styled(Arrow)`
   left: 10%;
+
+  & > svg {
+    fill: white;
+    width: 15px;
+    height: 15px;
+  }
 `;
 export const ArrowCancel = styled(Arrow)`
   right: 1%;
+
+  & > svg {
+    fill: white;
+    width: 15px;
+    height: 15px;
+  }
 `;
 
 // export const ArrowRight = styled(ArrowLeft);

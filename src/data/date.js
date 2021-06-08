@@ -1,11 +1,26 @@
 export const date = {
-  year: new Date().getFullYear(),
-  month: new Date().getMonth(),
-  day: new Date().getDay(),
+  hour: new Date().getHours(),
+  minutes: new Date().getMinutes(),
   date: new Date().getDate(),
+  day: new Date().getDay(),
   days: ['poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota', 'niedziela'],
+  month: new Date().getMonth(),
   monthName: ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'],
-  yearList: [2022, 2021, 2020, 2019, 2018],
+  remoldedMonthName: [
+    'stycznia',
+    'lutego',
+    'marca',
+    'kwietnia',
+    'maja',
+    'czerwca',
+    'lipca',
+    'sierpnia',
+    'września',
+    'pażdziernika',
+    'listopada',
+    'grudnia',
+  ],
+  year: new Date().getFullYear(),
 
   displayDay(year, month) {
     if (new Date(year, month, 1).getDay() === 0) {

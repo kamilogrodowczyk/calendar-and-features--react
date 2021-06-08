@@ -1,13 +1,14 @@
+import { Paragraph } from 'components/atoms/Paragraph.styles';
 import React from 'react';
 import { StyledButton, StyledBottom } from './RightbarBottom.styles';
 
-const RightbarBottom = () => (
+const RightbarBottom = ({ clickedEvent: { creationDate }, editEvent, removeEventQuestion }) => (
   <StyledBottom>
     <div>
-      <StyledButton>edytuj</StyledButton>
-      <StyledButton>usuń</StyledButton>
+      <StyledButton onClick={editEvent}>edytuj</StyledButton>
+      <StyledButton onClick={removeEventQuestion}>usuń</StyledButton>
     </div>
-    <p>utworzono 11.11.2021</p>
+    <Paragraph isSmaller>utworzono {creationDate}</Paragraph>
   </StyledBottom>
 );
 

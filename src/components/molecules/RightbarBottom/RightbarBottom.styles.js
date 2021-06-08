@@ -11,7 +11,6 @@ export const StyledBottom = styled.div`
   & > p {
     margin: 0;
     color: ${({ theme }) => theme.colors.lightGrey};
-    font-size: ${({ theme }) => theme.fontSizes.small};
   }
 `;
 

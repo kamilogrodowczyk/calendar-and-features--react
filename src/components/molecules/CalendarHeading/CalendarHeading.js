@@ -4,11 +4,11 @@ import SelectMonth from 'components/atoms/SelectMonth/SelectMonth';
 import SelectYear from 'components/atoms/SelectYear/SelectYear';
 import { Button } from 'components/atoms/Button.styles';
 
-const CalendarHeading = ({ changeDate, clickDate }) => (
+const CalendarHeading = ({ changeDate, clickDate, company }) => (
   <>
     <Paragraph>
       Klienci/
-      <span>Dąbex</span>
+      <span>{company}</span>
     </Paragraph>
     <Heading>Kalendarz</Heading>
     <Wrapper>

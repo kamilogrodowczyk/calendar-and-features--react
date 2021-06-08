@@ -1,21 +1,26 @@
 import React from 'react';
-import { StyledText } from './RightbarMiddle.styles';
-import { Heading3 } from 'components/atoms/Heading.styles';
+import { StyledText, StyledImage } from './RightbarMiddle.styles';
+import { Title } from 'components/atoms/Heading.styles';
 import { Paragraph } from 'components/atoms/Paragraph.styles';
+import emptyImage from 'assets/images/empty-image.png';
 
-const RightbarMiddle = () => (
+const RightbarMiddle = ({ clickedEvent: { title, description, comments, creationHour, image } }) => (
   <StyledText>
     <div>
-      <Heading3>Skrót nazwy postu</Heading3>
-      <Paragraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum nisl eget tincidunt blandit. Donec molestie sapien justo, quis venenatis
-        purus aliquet in. Sed tempus turpis dolor, eget pharetra ipsum varius quis. Sed tempus sem magna, quis consequat urna fermentum ac.
-        Pellentesque semper odio dolor, nec sodales augue laoreet quis.
+      <Title as="h3">{title}</Title>
+      <StyledImage src={image ? image : emptyImage} alt="good-element" />
+      <Paragraph isSmaller isMargin>
+        {description}
       </Paragraph>
     </div>
     <div>
-      <Paragraph>Uwagi</Paragraph>
-      <Paragraph>Publikuje Dawid godzina 16:00</Paragraph>
+      <Paragraph isSmaller isBold>
+        Uwagi
+      </Paragraph>
+      <Paragraph isSmaller isMargin>
+        {comments}
+      </Paragraph>
+      <Paragraph isSmaller>Publikuje Dawid godzina {creationHour}</Paragraph>
     </div>
   </StyledText>
 );

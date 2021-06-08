@@ -8,6 +8,7 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
   outline: none;
+  margin-right: ${({ isMarginRight }) => (isMarginRight ? '20px' : 0)};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.darkenYellow};

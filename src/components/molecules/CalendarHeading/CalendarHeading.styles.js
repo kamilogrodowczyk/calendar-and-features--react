@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Paragraph as DefaultParagraph } from 'components/atoms/Paragraph.styles';
-import { Heading1 } from 'components/atoms/Heading.styles';
+import { Title } from 'components/atoms/Heading.styles';
 
 export const Paragraph = styled(DefaultParagraph)`
   color: ${({ theme }) => theme.colors.white};
@@ -11,7 +11,7 @@ export const Paragraph = styled(DefaultParagraph)`
   }
 `;
 
-export const Heading = styled(Heading1)`
+export const Heading = styled(Title)`
   color: ${({ theme }) => theme.colors.yellow};
 `;
 
