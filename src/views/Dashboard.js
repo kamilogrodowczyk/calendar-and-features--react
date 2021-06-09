@@ -76,14 +76,6 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    // if (!example.current) return;
-    // const arr = [...example.current.children];
-    // arr.forEach((el) => {
-    //   if (el.children.length > 2) {
-    //     el.style.backgroundColor = theme.colors.darkenYellow;
-    //     el.style.color = theme.colors.black;
-    //   }
-    // });
     resetStyle(theme.colors.darkenYellow, theme.colors.black, 2);
   });
 
@@ -203,6 +195,7 @@ const Dashboard = () => {
     event.splice(ff, 1);
     setOpacityState(false);
     setOpenStateRemoveModal(false);
+    resetStyle('transparent', theme.colors.white);
   };
 
   const acceptRemovedEvent = () => {
