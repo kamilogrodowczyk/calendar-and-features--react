@@ -65,5 +65,3 @@ export const ArrowCancel = styled(Arrow)`
     height: 15px;
   }
 `;
-
-// export const ArrowRight = styled(ArrowLeft);

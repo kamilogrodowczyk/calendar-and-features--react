@@ -35,3 +35,12 @@ export const StyledCalendarItem = styled.div`
     color: ${({ theme }) => theme.colors.yellow};
   }
 `;
+
+export const StyledDayEvent = styled.div`
+  margin-top: 1.2vh;
+  font-size: 12px;
+
+  & > *:first-child {
+    font-weight: 800;
+  }
+`;

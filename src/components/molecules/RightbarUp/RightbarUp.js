@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyledHeading, Publication, ArrowLeft, ArrowRight, ArrowCancel } from './RightbarUp.styles';
+import { WrapperContext } from 'providers/DateProvider';
 
-const RightbarUp = ({ clickedEvent: { eventDate }, closeSidebar, event, showNextEvent, showPreviousEvent, leftArrow, rightArrow }) => {
+const RightbarUp = ({ closeSidebar }) => {
+  const { clickedEvent, leftArrow, rightArrow, showPreviousEvent, showNextEvent } = useContext(WrapperContext);
   return (
     <StyledHeading>
       <ArrowLeft isOpacity={leftArrow} onClick={showPreviousEvent}>
@@ -16,7 +18,7 @@ const RightbarUp = ({ clickedEvent: { eventDate }, closeSidebar, event, showNext
       </ArrowRight>
       <Publication>
         publikacja
-        <span> {eventDate}</span>
+        <span> {clickedEvent.eventDate}</span>
       </Publication>
       <ArrowCancel onClick={closeSidebar}>
         <svg height="487.595" viewBox="0 0 365.696 365.696" width="487.595" xmlns="http://www.w3.org/2000/svg">

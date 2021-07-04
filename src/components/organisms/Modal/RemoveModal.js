@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Wrapper, Button } from './RemoveModal.styles';
 import { Paragraph } from 'components/atoms/Paragraph.styles';
+import { WrapperContext } from 'providers/DateProvider';
 
 const overlayStyles = {
   overlay: {
@@ -8,9 +9,18 @@ const overlayStyles = {
   },
 };
 
-const RemoveModal = ({ isOpen, acceptRemovedEvent, removeEventAccept }) => {
+const RemoveModal = ({ removeEventAccept }) => {
+  const { openState } = useContext(WrapperContext);
+  const [isOpen, setOpenState] = openState;
+
+  const acceptRemovedEvent = () => {
+    setOpenState({
+      ...isOpen,
+      removeModal: false,
+    });
+  };
   return (
-    <Wrapper isOpen={isOpen} style={overlayStyles} appElement={document.getElementById('root')}>
+    <Wrapper isOpen={isOpen.removeModal} style={overlayStyles} appElement={document.getElementById('root')}>
       <Paragraph>Czy na pewno chcesz usunąć wydarzenie?</Paragraph>
       <span>
         <Button isMarginRight onClick={removeEventAccept}>

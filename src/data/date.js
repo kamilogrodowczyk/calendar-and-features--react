@@ -38,4 +38,15 @@ export const date = {
 
     return arr;
   },
+  displayArrayOfYears() {
+    const arrayOfYears = [];
+    const todayYear = new Date().getFullYear();
+    const pastYears = todayYear - 2;
+    const nextYears = todayYear + 3;
+
+    for (let i = pastYears; i <= nextYears; i++) {
+      arrayOfYears.push(i);
+    }
+    return arrayOfYears;
+  },
 };
