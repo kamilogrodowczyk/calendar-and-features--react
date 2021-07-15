@@ -58,8 +58,16 @@ export const useInput = (initialValues = '') => {
     }
   };
 
-  const handleSetImage = (reader) => {
-    dispatch({ type: actionTypes.setImage, reader });
+  const handleSetImage = (element) => {
+    const files = element;
+    const reader = new FileReader();
+    reader.onload = function () {
+      dispatch({
+        type: actionTypes.setImage,
+        reader: reader.result,
+      });
+    };
+    reader.readAsDataURL(files);
   };
 
   return {

@@ -14,16 +14,17 @@ export const StyledCalendarNow = styled.div`
     background-color: ${({ theme }) => theme.colors.lightenBlack};
   }
 
+  &:hover > span {
+    opacity: 1;
+  }
+
   &:hover > svg {
     opacity: 1;
   }
+
   & > p {
     color: ${({ isToday }) => (isToday === date.date && new Date().getMonth() === date.month && new Date().getFullYear() === date.year ? 'red' : '')};
     opacity: 1;
     font-weight: 800;
-  }
-
-  & > * {
-    pointer-events: none;
   }
 `;

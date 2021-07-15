@@ -1,4 +1,5 @@
 export const date = {
+  seconds: new Date().getSeconds(),
   hour: new Date().getHours(),
   minutes: new Date().getMinutes(),
   date: new Date().getDate(),

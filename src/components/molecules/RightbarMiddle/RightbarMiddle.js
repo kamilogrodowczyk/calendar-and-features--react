@@ -1,17 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { WrapperContext } from 'providers/DateProvider';
-import { StyledText, StyledImage } from './RightbarMiddle.styles';
+import { StyledText, StyledImage, Button, QuestionElement, FileInput, AcceptElement } from './RightbarMiddle.styles';
+import { Button as DefaultButton } from 'components/atoms/Button.styles';
 import { Title } from 'components/atoms/Heading.styles';
 import { Paragraph } from 'components/atoms/Paragraph.styles';
 import emptyImage from 'assets/images/empty-image.png';
 
 const RightbarMiddle = () => {
-  const { clickedEvent } = useContext(WrapperContext);
+  const { clickedEvent, updateImage, isDispla, changeImage } = useContext(WrapperContext);
+  const [isDisplayQuestion, setDisplayState] = useState(false);
+
   return (
     <StyledText>
-      <div>
+      <div style={{ position: 'relative' }}>
         <Title as="h3">{clickedEvent.title}</Title>
-        <StyledImage src={clickedEvent.image ? clickedEvent.image : emptyImage} alt="good-element" />
+        <div>
+          <StyledImage src={clickedEvent.image ? clickedEvent.image : emptyImage} alt="good-element" />
+          <Button onClick={() => setDisplayState(true)}>Zmień</Button>
+          <QuestionElement isDisplay={isDisplayQuestion}>
+            <p>Czy na pewno chcesz zmienić zdjęcie?</p>
+            <div>
+              <FileInput
+                onChange={changeImage}
+                onClick={() => setDisplayState(false)}
+                name="file"
+                accept="image/png, image/jpeg"
+                type="file"
+              ></FileInput>
+              <DefaultButton onClick={() => setDisplayState(false)}>Nie</DefaultButton>
+            </div>
+          </QuestionElement>
+          <AcceptElement isDispla={isDispla}>
+            <p>Zdjęcie zostało zapisane</p>
+            <DefaultButton onClick={updateImage}>Ok</DefaultButton>
+          </AcceptElement>
+        </div>
         <Paragraph isSmaller isMargin>
           {clickedEvent.description}
         </Paragraph>

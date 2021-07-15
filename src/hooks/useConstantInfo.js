@@ -5,14 +5,17 @@ export const useConstantInfo = (initialConstant) => {
   const [constantInfo, setConstantInfo] = useState(initialConstant);
 
   const handleShowConstantInfo = (day, company) => {
+    const seconds = new Date().getSeconds();
+    const hour = new Date().getHours();
+    const minutes = new Date().getMinutes();
     const creationDay = date.date < 10 ? `0${date.date}` : `${date.date}`;
     const creationMonth = date.month + 1 < 10 ? `0${date.month + 1}` : `${date.month + 1}`;
-    const creationHour = date.hour < 10 ? `0${date.hour}` : `${date.hour}`;
-    const creationMinute = date.minutes < 10 ? `0${date.minutes}` : `${date.minutes}`;
+    const creationHour = hour < 10 ? `0${hour}` : `${hour}`;
+    const creationMinute = minutes < 10 ? `0${minutes}` : `${minutes}`;
 
     setConstantInfo({
       eventDate: `${day} ${date.remoldedMonthName[date.month]} ${date.year}`,
-      formattedDateToSort: `${date.year}${date.month + 1}${day}`,
+      formattedDateToSort: `${date.year}${date.month + 1}${day}${date.hour}${date.minutes}${seconds}`,
       creationDate: `${creationDay}.${creationMonth}.${date.year}`,
       creationHour: `${creationHour}:${creationMinute}`,
       company,
@@ -20,8 +23,13 @@ export const useConstantInfo = (initialConstant) => {
     });
   };
 
+  const clearConstant = () => {
+    setConstantInfo(initialConstant);
+  };
+
   return {
     constantInfo,
     handleShowConstantInfo,
+    clearConstant,
   };
 };

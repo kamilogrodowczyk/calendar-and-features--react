@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import InputModal from 'components/organisms/Modal/InputModal';
 import RemoveModal from 'components/organisms/Modal/RemoveModal';
-import { sortArray } from 'helpers/sortArray';
 import { resetStyle } from 'helpers/resetStyle';
 import { useSelectedEvent } from 'hooks/useSelectedEvent';
 import { useCompany } from 'hooks/useCompany';
@@ -18,27 +17,24 @@ const WrapperProvider = ({ children }) => {
   const [day, setDay] = useState('');
   const [event, showEvent] = useState([]);
   const [arrayIndex, setArrayIndex] = useState(null);
+  const [filterr, setFilter] = useState([]);
+  const [filterrIndex, setFilterIndex] = useState(1);
+  const [isDispla, setDisplayStat] = useState(false);
 
   const eventElement = useRef(null);
   const themeEventElement = useTheme();
 
   const { company, showCompany } = useCompany(eventElement);
   const { inputState, handleChangeInput, handleClearValues, handleSetImage, handleEditInput } = useInput(initialInput);
-  const { constantInfo, handleShowConstantInfo } = useConstantInfo(initialConstant);
-  const {
-    clickedEvent,
-    rightArrow,
-    leftArrow,
-    addEvent,
-    changeArrowsAfterClose,
-    changeArrowsAfterClick,
-    showNextEvent,
-    showPreviousEvent,
-  } = useSelectedEvent(initialEvent, event);
+  const { constantInfo, handleShowConstantInfo, clearConstant } = useConstantInfo(initialConstant);
+  const { clickedEvent, rightArrow, leftArrow, addEvent, showNextEvent, showPreviousEvent, showEventWithTheSameDay } = useSelectedEvent(
+    initialEvent,
+    event
+  );
 
   useEffect(() => {
     resetStyle(eventElement, themeEventElement.colors.darkenYellow, themeEventElement.colors.black, 2);
-  });
+  }, [eventElement, themeEventElement]);
 
   const handleClose = (e) => {
     e.preventDefault();
@@ -64,7 +60,7 @@ const WrapperProvider = ({ children }) => {
       });
     }
     handleClearValues();
-    changeArrowsAfterClose(constantInfo);
+    clearConstant();
   };
 
   const handleInputChange = (e) => {
@@ -73,7 +69,7 @@ const WrapperProvider = ({ children }) => {
   };
 
   const removeEventAccept = () => {
-    const eventIndex = event.findIndex((el) => el.eventDate === clickedEvent.eventDate);
+    const eventIndex = event.findIndex((el) => el.formattedDateToSort === clickedEvent.formattedDateToSort);
     event.splice(eventIndex, 1);
     setOpenState({
       ...isOpen,
@@ -81,38 +77,53 @@ const WrapperProvider = ({ children }) => {
       rightbarContainer: false,
     });
     resetStyle(eventElement, 'transparent', themeEventElement.colors.white);
+    setFilterIndex(1);
   };
 
-  const handleClick = (e) => {
+  const handleShowEvent = (e) => {
+    e.stopPropagation();
+    const dayAttribute = e.currentTarget.getAttribute('data-day');
+    const twoDigitDate = parseInt(dayAttribute) < 10 ? `0${dayAttribute}` : `${dayAttribute}`;
+    if (filterrIndex === 1) {
+      addEvent(twoDigitDate, newDate);
+    } else {
+      showEventWithTheSameDay(filterr, filterrIndex);
+    }
+    setOpenState({
+      ...isOpen,
+      rightbarContainer: true,
+    });
+  };
+
+  const handleAddEvent = (e) => {
     eventElement.current = e.currentTarget.parentNode;
     const targetDay = e.currentTarget.firstChild.textContent;
     const twoDigitDate = parseInt(targetDay) < 10 ? `0${targetDay}` : `${targetDay}`;
-    const sortedArray = sortArray(event);
-    const currentDate = `${twoDigitDate} ${newDate.remoldedMonthName} ${newDate.year}`;
-    if (e.target.children.length <= 2) {
-      setOpenState({
-        ...isOpen,
-        inputModal: true,
-        editingModal: false,
-      });
-      setDay(twoDigitDate);
-    } else {
-      addEvent(twoDigitDate, newDate);
-      changeArrowsAfterClick(sortedArray[0].eventDate, currentDate, sortedArray[sortedArray.length - 1].eventDate, currentDate);
-      setOpenState({
-        ...isOpen,
-        rightbarContainer: true,
-      });
-    }
+    setDay(twoDigitDate);
+    setOpenState({
+      ...isOpen,
+      inputModal: true,
+      editingModal: false,
+    });
+    setFilterIndex(1);
+    setFilter([]);
   };
 
   const dropImage = (e) => {
-    const files = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function () {
-      handleSetImage(reader.result);
-    };
-    reader.readAsDataURL(files);
+    handleSetImage(e.target.files[0]);
+  };
+
+  const updateImage = () => {
+    const eventIndex = event.findIndex((el) => el.eventDate === clickedEvent.eventDate);
+    event[eventIndex].image = inputState.image;
+    clickedEvent.image = inputState.image;
+    setDisplayStat(false);
+    handleClearValues();
+  };
+
+  const changeImage = (e) => {
+    handleSetImage(e.target.files[0]);
+    setDisplayStat(true);
   };
 
   const editEvent = () => {
@@ -131,6 +142,8 @@ const WrapperProvider = ({ children }) => {
       value={{
         openState: [isOpen, setOpenState],
         dateState: [newDate, setNewDate],
+        filterState: [filterr, setFilter],
+        filterIndexState: [filterrIndex, setFilterIndex],
         showCompany,
         event,
         company,
@@ -141,7 +154,12 @@ const WrapperProvider = ({ children }) => {
         showPreviousEvent,
         leftArrow,
         rightArrow,
-        handleClick,
+        handleAddEvent,
+        handleShowEvent,
+        inputState,
+        changeImage,
+        isDispla,
+        updateImage,
       }}
     >
       {children}

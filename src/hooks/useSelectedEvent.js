@@ -3,16 +3,16 @@ import { sortArray } from 'helpers/sortArray';
 
 export const useSelectedEvent = (initialEvent, event) => {
   const [clickedEvent, showClickedEvent] = useState(initialEvent);
-  const [rightArrow, setRightArrowState] = useState(false);
-  const [leftArrow, setLeftArrowState] = useState(false);
+  const [rightArrow, setRightArrowState] = useState(true);
+  const [leftArrow, setLeftArrowState] = useState(true);
 
-  const slideEvent = (nextEvent) => {
+  const slideEvent = (nextEvent = 0) => {
     const sortedArray = sortArray(event);
-    let arrayIndex = sortedArray.findIndex((el) => el.eventDate === clickedEvent.eventDate);
+    let arrayIndex = sortedArray.findIndex((el) => el.formattedDateToSort === clickedEvent.formattedDateToSort);
     arrayIndex = arrayIndex + nextEvent;
     if (!sortedArray[arrayIndex]);
     showClickedEvent(sortedArray[arrayIndex]);
-    changeArrowsAfterClick(arrayIndex, 0, sortedArray.length - 1, arrayIndex);
+    // changeArrowsAfterClick(arrayIndex, 0, sortedArray.length - 1, arrayIndex);
   };
 
   const addEvent = (twoDigitDate, newDate) => {
@@ -34,6 +34,11 @@ export const useSelectedEvent = (initialEvent, event) => {
       }
       return element;
     });
+  };
+
+  const showEventWithTheSameDay = (element, index) => {
+    if (!element || index <= 1) return;
+    showClickedEvent(element[element.length - index]);
   };
 
   const changeArrowsAfterClose = (constantInfo) => {
@@ -58,13 +63,13 @@ export const useSelectedEvent = (initialEvent, event) => {
   };
 
   const changeArrowsAfterClick = (initialArrayIndex, condition1, finalArrayIndex, condition2) => {
-    if (initialArrayIndex === condition1) {
+    if (condition1 && initialArrayIndex === condition1) {
       setLeftArrowState(true);
     } else {
       setLeftArrowState(false);
     }
 
-    if (finalArrayIndex === condition2) {
+    if (condition2 && finalArrayIndex === condition2) {
       setRightArrowState(true);
     } else {
       setRightArrowState(false);
@@ -86,9 +91,10 @@ export const useSelectedEvent = (initialEvent, event) => {
     rightArrow,
     leftArrow,
     addEvent,
-    changeArrowsAfterClose,
     changeArrowsAfterClick,
+    changeArrowsAfterClose,
     showNextEvent,
     showPreviousEvent,
+    showEventWithTheSameDay,
   };
 };
