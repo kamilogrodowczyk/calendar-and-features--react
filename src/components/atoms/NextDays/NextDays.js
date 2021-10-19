@@ -18,7 +18,7 @@ const StyledCalendarNext = styled(StyledCalendarNow)`
 const NextDays = () => (
   <>
     {addNextDays(date, date.year, date.month).map((el) => (
-      <StyledCalendarNext key={el} index={el}>
+      <StyledCalendarNext data-testid="days" key={el} index={el}>
         <p>{el}</p>
       </StyledCalendarNext>
     ))}

@@ -57,7 +57,7 @@ export const QuestionElement = styled.div`
 `;
 
 export const AcceptElement = styled(QuestionElement)`
-  display: ${({ isDispla }) => (isDispla ? 'grid' : 'none')};
+  display: ${({ isDisplayAnswer }) => (isDisplayAnswer ? 'grid' : 'none')};
   height: 100%;
   width: 100%;
   align-content: center;

@@ -34,7 +34,8 @@ const Arrow = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-  display: ${({ isOpacity }) => (isOpacity ? 'none' : 'flex')};
+  opacity: 0;
+  /* display: ${({ isOpacity }) => (isOpacity ? 'none' : 'flex')}; */
 `;
 
 export const ArrowLeft = styled(Arrow)`
@@ -58,6 +59,7 @@ export const ArrowRight = styled(Arrow)`
 `;
 export const ArrowCancel = styled(Arrow)`
   right: 1%;
+  opacity: 1;
 
   & > svg {
     fill: white;

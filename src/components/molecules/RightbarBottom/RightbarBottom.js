@@ -1,17 +1,13 @@
 import { Paragraph } from 'components/atoms/Paragraph.styles';
 import React, { useContext } from 'react';
-import { WrapperContext } from 'providers/DateProvider';
+import { CalendarContext } from 'providers/CalendarProvider';
 import { StyledButton, StyledBottom } from './RightbarBottom.styles';
 
 const RightbarBottom = () => {
-  const { openState, clickedEvent, editEvent } = useContext(WrapperContext);
-  const [isOpen, setOpenState] = openState;
+  const { toggleRemoveModal, clickedEvent, editEvent } = useContext(CalendarContext);
 
   const removeEventQuestion = () => {
-    setOpenState({
-      ...isOpen,
-      removeModal: true,
-    });
+    toggleRemoveModal();
   };
   return (
     <StyledBottom>

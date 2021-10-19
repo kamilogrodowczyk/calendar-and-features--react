@@ -4,9 +4,10 @@ import { date } from 'data/date';
 
 const SelectMonth = (props) => (
   <Wrapper>
-    <select {...props} defaultValue={date.monthName[date.month]}>
+    <label htmlFor="month" />
+    <select data-testid="Month" {...props} name="month" defaultValue={date.monthName[date.month]}>
       {date.monthName.map((month) => (
-        <option key={month} value={month}>
+        <option data-testid="select-option" key={month} value={month}>
           {month}
         </option>
       ))}

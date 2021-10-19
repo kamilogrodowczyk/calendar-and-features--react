@@ -10,4 +10,11 @@ export const Wrapper = styled.div`
   position: relative;
   opacity: ${({ isOpacity }) => (isOpacity ? 1 : 0)};
   user-select: none;
+
+  @media (max-width: 1400px) {
+    position: absolute;
+    right: 0;
+    width: 40%;
+    z-index: ${({ isOpacity }) => (isOpacity ? 1 : -1)};
+  }
 `;

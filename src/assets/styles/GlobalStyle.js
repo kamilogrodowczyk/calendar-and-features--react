@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
 
     h1 {
         font-size: ${({ theme }) => theme.fontSizes.large};
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
         font-weight: 800;
         letter-spacing: 1px;
         margin-bottom: 1rem;

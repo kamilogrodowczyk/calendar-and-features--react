@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Wrapper, Button } from './RemoveModal.styles';
 import { Paragraph } from 'components/atoms/Paragraph.styles';
-import { WrapperContext } from 'providers/DateProvider';
 
 const overlayStyles = {
   overlay: {
@@ -9,27 +9,32 @@ const overlayStyles = {
   },
 };
 
-const RemoveModal = ({ removeEventAccept }) => {
-  const { openState } = useContext(WrapperContext);
-  const [isOpen, setOpenState] = openState;
-
+const RemoveModal = ({ removeEventAccept, isShowingRemoveModal, toggleRemoveModal }) => {
   const acceptRemovedEvent = () => {
-    setOpenState({
-      ...isOpen,
-      removeModal: false,
-    });
+    toggleRemoveModal();
+  };
+
+  const handleRemoveEvent = () => {
+    removeEventAccept();
+    toggleRemoveModal();
   };
   return (
-    <Wrapper isOpen={isOpen.removeModal} style={overlayStyles} appElement={document.getElementById('root')}>
+    <Wrapper isOpen={isShowingRemoveModal} style={overlayStyles} ariaHideApp={!isShowingRemoveModal} appElement={document.getElementById('root')}>
       <Paragraph>Czy na pewno chcesz usunąć wydarzenie?</Paragraph>
       <span>
-        <Button isMarginRight onClick={removeEventAccept}>
+        <Button data-testid="button-to-remove" isMarginRight onClick={handleRemoveEvent}>
           Tak
         </Button>
         <Button onClick={acceptRemovedEvent}>Nie</Button>
       </span>
     </Wrapper>
   );
+};
+
+RemoveModal.propTypes = {
+  isShowingRemoveModal: PropTypes.bool,
+  removeEventAccept: PropTypes.func,
+  toggleRemoveModal: PropTypes.func,
 };
 
 export default RemoveModal;

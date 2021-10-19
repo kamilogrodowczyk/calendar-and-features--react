@@ -8,6 +8,8 @@ export const theme = {
     darkenYellow: darken(0.1, '#fdd425'),
     black: '#222222',
     lightenBlack: lighten(0.15, '#222222'),
+    disabled: lighten(0.25, '#222222'),
+    error: '#ff3333',
   },
 
   fontSizes: {

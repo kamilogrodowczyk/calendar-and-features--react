@@ -1,14 +1,37 @@
 import React, { useContext, useState } from 'react';
-import { WrapperContext } from 'providers/DateProvider';
+import { CalendarContext } from 'providers/CalendarProvider';
 import { StyledText, StyledImage, Button, QuestionElement, FileInput, AcceptElement } from './RightbarMiddle.styles';
 import { Button as DefaultButton } from 'components/atoms/Button.styles';
 import { Title } from 'components/atoms/Heading.styles';
 import { Paragraph } from 'components/atoms/Paragraph.styles';
 import emptyImage from 'assets/images/empty-image.png';
+import { useImage } from 'hooks/useImage';
+import axios from 'axios';
+import { BASE_API_URL } from 'data/baseUrl';
 
 const RightbarMiddle = () => {
-  const { clickedEvent, updateImage, isDispla, changeImage } = useContext(WrapperContext);
-  const [isDisplayQuestion, setDisplayState] = useState(false);
+  const { clickedEvent, update } = useContext(CalendarContext);
+  const [isDisplayQuestion, setDisplayQuestionState] = useState(false);
+  const { image, handleSetImage } = useImage('');
+  const [isDisplayAnswer, setDisplayAnswerState] = useState(false);
+
+  const changeImage = (e) => {
+    handleSetImage(e.target.files[0]);
+    setDisplayAnswerState(true);
+  };
+
+  const updateImage = async () => {
+    try {
+      await axios.put(`${BASE_API_URL}/event/image/${clickedEvent.formattedDateToSort}`, { image: image }).then((response) => {
+        update(image);
+        setDisplayAnswerState(false);
+      });
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response);
+      }
+    }
+  };
 
   return (
     <StyledText>
@@ -16,21 +39,21 @@ const RightbarMiddle = () => {
         <Title as="h3">{clickedEvent.title}</Title>
         <div>
           <StyledImage src={clickedEvent.image ? clickedEvent.image : emptyImage} alt="good-element" />
-          <Button onClick={() => setDisplayState(true)}>Zmień</Button>
+          <Button onClick={() => setDisplayQuestionState(true)}>Zmień</Button>
           <QuestionElement isDisplay={isDisplayQuestion}>
             <p>Czy na pewno chcesz zmienić zdjęcie?</p>
             <div>
               <FileInput
                 onChange={changeImage}
-                onClick={() => setDisplayState(false)}
-                name="file"
+                onClick={() => setDisplayQuestionState(false)}
+                name="image"
                 accept="image/png, image/jpeg"
                 type="file"
               ></FileInput>
-              <DefaultButton onClick={() => setDisplayState(false)}>Nie</DefaultButton>
+              <DefaultButton onClick={() => setDisplayQuestionState(false)}>Nie</DefaultButton>
             </div>
           </QuestionElement>
-          <AcceptElement isDispla={isDispla}>
+          <AcceptElement isDisplayAnswer={isDisplayAnswer}>
             <p>Zdjęcie zostało zapisane</p>
             <DefaultButton onClick={updateImage}>Ok</DefaultButton>
           </AcceptElement>
@@ -46,7 +69,9 @@ const RightbarMiddle = () => {
         <Paragraph isSmaller isMargin>
           {clickedEvent.comments}
         </Paragraph>
-        <Paragraph isSmaller>Publikuje Dawid godzina {clickedEvent.creationHour}</Paragraph>
+        <Paragraph isSmaller>
+          Publikuje {clickedEvent.activeUser} godzina {clickedEvent.creationHour}
+        </Paragraph>
       </div>
     </StyledText>
   );

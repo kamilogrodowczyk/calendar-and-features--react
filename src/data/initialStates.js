@@ -1,5 +1,35 @@
 import { date } from 'data/date';
 
+export const initialCalendarContext = {
+  event: [],
+  clickedEvent: {},
+  arrayIndex: null,
+  editEvent: () => {},
+  addNewEvent: () => {},
+  showClickedEvent: () => {},
+  update: () => {},
+  addEvent: () => {},
+  changeEditedEvent: () => {},
+  // toggleInputModal: () => {},
+  toggleRemoveModal: () => {},
+  isShowingRemoveModal: false,
+  // toggleEditInputModal: () => {},
+  toggleEditAcceptModal: () => {},
+  isShowingEditAcceptModal: false,
+  // isShowingEditInputModal: false,
+};
+
+export const initialCompanyContext = {
+  addCompany: () => {},
+  removeCompany: () => {},
+  company: [],
+  setSelectedCompany: () => {},
+  selectedCompany: '',
+  userData: {},
+  setUserData: () => {},
+  resetUserData: () => {},
+};
+
 export const initialDate = {
   year: date.year,
   month: date.monthName[date.month],
@@ -19,7 +49,7 @@ export const editedInput = {
   title: '',
   time: '',
   description: '',
-  comments: '',
+  comment: '',
 };
 
 export const initialConstant = {
@@ -29,14 +59,7 @@ export const initialConstant = {
   creationHour: '',
   company: '',
   day: '',
+  activeUser: '',
 };
 
 export const initialEvent = { ...initialInput, ...initialConstant };
-
-export const initialOpenState = {
-  inputModal: false,
-  editInputModal: false,
-  removeModal: false,
-  editModal: false,
-  rightbarContainer: false,
-};

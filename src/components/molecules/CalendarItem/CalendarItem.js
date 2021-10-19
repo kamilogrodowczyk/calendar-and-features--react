@@ -1,25 +1,22 @@
-import React, { useContext } from 'react';
-import { StyledCalendarNow } from './CalendarItem.styles';
-import { date } from 'data/date';
-import PastDays from 'components/atoms/PastDays';
-import NextDays from 'components/atoms/NextDays';
-import { WrapperContext } from 'providers/DateProvider';
+import React from 'react';
+import PropTypes from 'prop-types';
+import PastDays from 'components/atoms/PastDays/PastDays';
+import NextDays from 'components/atoms/NextDays/NextDays';
+import RecentDays from 'components/atoms/RecentDays/RecentDays';
 
-const CalendarItem = ({ dayEvent }) => {
-  const { handleAddEvent } = useContext(WrapperContext);
-
+const CalendarItem = () => {
   return (
     <>
       <PastDays />
-      {date.displayNumberOfDays(date.month).map((el, index) => (
-        <StyledCalendarNow key={index + 1} el={index + 1} isToday={el} onClick={handleAddEvent}>
-          <p>{el}</p>
-          {dayEvent(el)}
-        </StyledCalendarNow>
-      ))}
+      <RecentDays />
       <NextDays />
     </>
   );
+};
+
+CalendarItem.propTypes = {
+  dayEvent: PropTypes.func,
+  handleAddEvent: PropTypes.func,
 };
 
 export default CalendarItem;

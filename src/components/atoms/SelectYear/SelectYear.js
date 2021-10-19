@@ -5,9 +5,10 @@ import { date } from 'data/date';
 const SelectYear = (props) => {
   return (
     <Wrapper>
-      <select {...props} defaultValue={date.year}>
+      <label htmlFor="year" />
+      <select data-testid="Year" {...props} defaultValue={date.year}>
         {date.displayArrayOfYears().map((year) => (
-          <option key={year} value={year}>
+          <option data-testid="select-option" key={year} value={year}>
             {year}
           </option>
         ))}

@@ -30,16 +30,29 @@ export const StyledCalendarItem = styled.div`
   justify-content: center;
   background-color: transparent;
   color: ${({ theme }) => theme.colors.white};
-
-  & > *:nth-child(7n - 1),
-  & > *:nth-child(7n) {
-    color: ${({ theme }) => theme.colors.yellow};
-  }
 `;
 
 export const StyledDayEvent = styled.div`
-  margin-top: 1.2vh;
   font-size: 12px;
+  background-color: cornflowerblue;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  padding-top: 4vh;
+  background-color: ${({ theme }) => theme.colors.yellow};
+  color: ${({ theme }) => theme.colors.black};
+  font-weight: 800;
+
+  & > p.paragraph {
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 7px 0 0 7px;
+  }
 
   &:not(:last-of-type) {
     display: none;
@@ -68,7 +81,7 @@ export const Span = styled.span`
   }
 `;
 
-export const SpanFlex = styled.span`
+export const ButtonsContainer = styled.span`
   display: ${({ isDisplay }) => (isDisplay ? 'flex' : 'none')};
   width: 100%;
   height: 100%;
@@ -77,17 +90,6 @@ export const SpanFlex = styled.span`
 export const Button = styled(DefaultButton)`
   width: 100%;
   height: 100%;
-  color: white;
-  border-top: 1px solid white;
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: 400;
-  background-color: rgba(70, 70, 70, 1);
-
-  &:last-child {
-    border-bottom: 1px solid white;
-  }
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 1);
-  }
 `;

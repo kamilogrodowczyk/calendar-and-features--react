@@ -1,18 +1,14 @@
 import { useState } from 'react';
-import { resetStyle } from 'helpers/resetStyle';
-import { useTheme } from 'styled-components';
 
-export const useCompany = (eventElement) => {
-  const [company, setCompany] = useState('');
-  const themeEventElement = useTheme();
+export const useCompany = () => {
+  const [selectedCompany, setCompany] = useState('');
 
-  const showCompany = (e) => {
-    setCompany(e.target.textContent);
-    resetStyle(eventElement, 'transparent', themeEventElement.colors.white);
+  const setSelectedCompany = (target) => {
+    setCompany(target);
   };
 
   return {
-    company,
-    showCompany,
+    selectedCompany,
+    setSelectedCompany,
   };
 };

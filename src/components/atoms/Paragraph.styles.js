@@ -9,3 +9,13 @@ export const Paragraph = styled.p`
   line-height: 1.5;
   word-break: break-all;
 `;
+
+export const ErrorParagraph = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  color: ${({ theme }) => theme.colors.error};
+  background-color: ${({ theme, isWhite }) => (isWhite ? theme.colors.white : 'transparent')};
+  margin-bottom: 5px;
+  padding: 5px;
+  font-weight: 700;
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+`;

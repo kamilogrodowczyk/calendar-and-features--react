@@ -18,7 +18,7 @@ const StyledCalendarPast = styled(StyledCalendarNow)`
 const PastDays = () => (
   <>
     {addPastDays(date, date.year, date.month).map((el) => (
-      <StyledCalendarPast key={el} index={el}>
+      <StyledCalendarPast data-testid="days" key={el} index={el}>
         <p>{el}</p>
       </StyledCalendarPast>
     ))}

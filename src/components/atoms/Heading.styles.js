@@ -26,4 +26,5 @@ export const Heading3 = styled.h3`
 export const Title = styled.h1`
   font-size: ${({ theme }) => theme.fontSizes.large};
   color: ${({ theme, isWhite }) => (isWhite ? theme.colors.white : theme.colors.black)};
+  text-align: ${({ isCenter }) => (isCenter ? 'center' : 'left')};
 `;

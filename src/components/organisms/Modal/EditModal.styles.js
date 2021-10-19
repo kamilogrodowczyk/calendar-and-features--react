@@ -3,9 +3,6 @@ import Modal from 'react-modal';
 import { Button as ModalButton } from 'components/atoms/Button.styles';
 
 export const Wrapper = styled(Modal)`
-  .ReactModal__Overlay {
-    background: pink;
-  }
   width: 400px;
   height: 200px;
   position: absolute;

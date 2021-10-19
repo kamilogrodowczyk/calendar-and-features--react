@@ -4,7 +4,7 @@ import { date } from 'data/date';
 export const useConstantInfo = (initialConstant) => {
   const [constantInfo, setConstantInfo] = useState(initialConstant);
 
-  const handleShowConstantInfo = (day, company) => {
+  const handleShowConstantInfo = (day, company, activeUser) => {
     const seconds = new Date().getSeconds();
     const hour = new Date().getHours();
     const minutes = new Date().getMinutes();
@@ -20,6 +20,7 @@ export const useConstantInfo = (initialConstant) => {
       creationHour: `${creationHour}:${creationMinute}`,
       company,
       day,
+      activeUser,
     });
   };
 
